@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 const NowGaldaeDetail: React.FC = () => {
@@ -7,6 +7,7 @@ const NowGaldaeDetail: React.FC = () => {
 
   return (
     <View style={styles.main}>
+  <StatusBar barStyle="dark-content" backgroundColor="#ffffff" translucent={false} />
       <View style={styles.map}>
         <WebView
           ref={webviewRef}
@@ -21,7 +22,7 @@ const NowGaldaeDetail: React.FC = () => {
           bounces={false}
           contentInsetAdjustmentBehavior="never"
           automaticallyAdjustContentInsets={false}
-          decelerationRate="normal" 
+          decelerationRate={Platform.OS === 'android' ? 0.998 : 'normal'}
           allowsBackForwardNavigationGestures={false}
           androidLayerType="hardware"
           onScroll={() => {}}
